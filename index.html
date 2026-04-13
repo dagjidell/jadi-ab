@@ -1,395 +1,707 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Jadi AB — Full Stack Development</title>
-  <meta name="description" content="Jadi AB provides full stack development, cloud & DevOps, API design, and technical consulting services based in Stockholm, Sweden.">
-  <meta name="theme-color" content="#ffffff">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Jadi AB — Full Stack Development</title>
+    <meta
+      name="description"
+      content="Jadi AB provides full stack development, cloud & DevOps, API design, and technical consulting services based in Stockholm, Sweden."
+    />
+    <meta name="theme-color" content="#ffffff" />
 
-  <!-- Open Graph -->
-  <meta property="og:title" content="Jadi AB — Full Stack Development">
-  <meta property="og:description" content="Beautifully crafted solutions to difficult problems. Full stack development and consulting based in Stockholm.">
-  <meta property="og:type" content="website">
-  <meta property="og:locale" content="en_US">
+    <!-- Open Graph -->
+    <meta property="og:title" content="Jadi AB — Full Stack Development" />
+    <meta
+      property="og:description"
+      content="Beautifully crafted solutions to difficult problems. Full stack development and consulting based in Stockholm."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="en_US" />
 
-  <link rel="icon" href="/favicon.ico">
-  <link rel="apple-touch-icon" href="/logo192.png">
-  <link rel="manifest" href="/manifest.json">
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/logo192.png" />
+    <link rel="manifest" href="/manifest.json" />
 
-  <!-- Google Fonts: Inter -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
 
-  <style>
-    /* ── Reset & Base ───────────────────────────────── */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; scroll-padding-top: 72px; }
-    body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      color: #1a1a2e;
-      background: #fff;
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-    }
-    img { max-width: 100%; display: block; }
-    a { color: #2563eb; text-decoration: none; transition: color 0.2s; }
-    a:hover { color: #1d4ed8; }
-
-    /* ── Layout ─────────────────────────────────────── */
-    .container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
-    section { padding: 96px 0; }
-
-    /* ── Navigation ─────────────────────────────────── */
-    .nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      background: rgba(255,255,255,0.95);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border-bottom: 1px solid #e5e7eb;
-      transition: box-shadow 0.3s;
-    }
-    .nav.scrolled { box-shadow: 0 1px 8px rgba(0,0,0,0.06); }
-    .nav .container {
-      display: flex; align-items: center; justify-content: space-between;
-      height: 64px;
-    }
-    .nav-logo {
-      font-size: 1.25rem; font-weight: 700; color: #1a1a2e;
-      letter-spacing: -0.02em;
-    }
-    .nav-logo span { color: #2563eb; }
-    .nav-links { display: flex; gap: 32px; list-style: none; }
-    .nav-links a {
-      font-size: 0.9rem; font-weight: 500; color: #4b5563;
-      transition: color 0.2s;
-    }
-    .nav-links a:hover { color: #1a1a2e; }
-    .nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 4px; }
-    .nav-toggle svg { width: 24px; height: 24px; stroke: #1a1a2e; }
-
-    /* ── Hero ───────────────────────────────────────── */
-    .hero {
-      padding: 160px 0 120px;
-      background: linear-gradient(160deg, #f8fafc 0%, #eef2ff 50%, #f8fafc 100%);
-    }
-    .hero-content { max-width: 680px; }
-    .hero h1 {
-      font-size: clamp(2rem, 5vw, 3.25rem);
-      font-weight: 700;
-      line-height: 1.15;
-      letter-spacing: -0.03em;
-      color: #1a1a2e;
-      margin-bottom: 20px;
-    }
-    .hero h1 em {
-      font-style: normal;
-      background: linear-gradient(135deg, #2563eb, #7c3aed);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-    .hero p {
-      font-size: 1.15rem;
-      color: #4b5563;
-      max-width: 520px;
-      margin-bottom: 32px;
-    }
-    .hero-cta {
-      display: inline-flex; align-items: center; gap: 8px;
-      padding: 12px 28px;
-      background: #2563eb; color: #fff;
-      font-weight: 600; font-size: 0.95rem;
-      border-radius: 8px;
-      transition: background 0.2s, transform 0.15s;
-    }
-    .hero-cta:hover { background: #1d4ed8; color: #fff; transform: translateY(-1px); }
-
-    /* ── Services ───────────────────────────────────── */
-    .services { background: #fff; }
-    .section-label {
-      font-size: 0.8rem; font-weight: 600; text-transform: uppercase;
-      letter-spacing: 0.08em; color: #2563eb; margin-bottom: 12px;
-    }
-    .section-title {
-      font-size: clamp(1.5rem, 3vw, 2.25rem);
-      font-weight: 700; letter-spacing: -0.02em;
-      margin-bottom: 16px; color: #1a1a2e;
-    }
-    .section-subtitle {
-      color: #4b5563; max-width: 560px; margin-bottom: 56px; font-size: 1.05rem;
-    }
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-      gap: 24px;
-    }
-    .service-card {
-      padding: 32px 28px;
-      border: 1px solid #e5e7eb;
-      border-radius: 12px;
-      transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
-    }
-    .service-card:hover {
-      border-color: #c7d2fe;
-      box-shadow: 0 4px 24px rgba(37,99,235,0.08);
-      transform: translateY(-2px);
-    }
-    .service-icon {
-      width: 44px; height: 44px;
-      display: flex; align-items: center; justify-content: center;
-      background: #eef2ff; border-radius: 10px; margin-bottom: 20px;
-    }
-    .service-icon svg { width: 22px; height: 22px; stroke: #2563eb; fill: none; }
-    .service-card h3 {
-      font-size: 1.05rem; font-weight: 600; margin-bottom: 10px; color: #1a1a2e;
-    }
-    .service-card p { font-size: 0.9rem; color: #6b7280; line-height: 1.55; }
-
-    /* ── About ──────────────────────────────────────── */
-    .about { background: #f8fafc; }
-    .about-content { max-width: 640px; }
-    .about-content p { color: #4b5563; font-size: 1.05rem; margin-bottom: 16px; }
-
-    /* ── Founder ────────────────────────────────────── */
-    .founder { background: #fff; }
-    .founder-card {
-      display: flex; gap: 48px; align-items: center;
-    }
-    .founder-photo {
-      flex-shrink: 0;
-      width: 200px; height: 200px;
-      border-radius: 16px;
-      overflow: hidden;
-      background: #e5e7eb;
-    }
-    .founder-photo svg { width: 100%; height: 100%; }
-    .founder-info h3 {
-      font-size: 1.35rem; font-weight: 700; margin-bottom: 6px; color: #1a1a2e;
-    }
-    .founder-info .founder-role {
-      font-size: 0.9rem; color: #2563eb; font-weight: 500; margin-bottom: 16px;
-    }
-    .founder-info p { color: #4b5563; font-size: 0.95rem; max-width: 480px; }
-
-    /* ── Contact / Footer ──────────────────────────── */
-    .contact {
-      background: #1a1a2e; color: #e5e7eb; padding: 80px 0 48px;
-    }
-    .contact .section-label { color: #818cf8; }
-    .contact .section-title { color: #fff; }
-    .contact-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 40px; margin-bottom: 56px;
-    }
-    .contact-item h4 {
-      font-size: 0.8rem; font-weight: 600; text-transform: uppercase;
-      letter-spacing: 0.06em; color: #94a3b8; margin-bottom: 8px;
-    }
-    .contact-item a { color: #c7d2fe; font-size: 0.95rem; }
-    .contact-item a:hover { color: #fff; }
-    .contact-item p { color: #c7d2fe; font-size: 0.95rem; }
-    .footer-bar {
-      border-top: 1px solid rgba(255,255,255,0.08);
-      padding-top: 24px;
-      display: flex; justify-content: space-between; align-items: center;
-      flex-wrap: wrap; gap: 12px;
-    }
-    .footer-bar p { font-size: 0.82rem; color: #64748b; }
-
-    /* ── Animations ─────────────────────────────────── */
-    .fade-in {
-      opacity: 0; transform: translateY(20px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
-    }
-    .fade-in.visible { opacity: 1; transform: translateY(0); }
-
-    /* ── Mobile ─────────────────────────────────────── */
-    @media (max-width: 768px) {
-      section { padding: 72px 0; }
-      .hero { padding: 120px 0 80px; }
-
-      .nav-links {
-        position: fixed; top: 64px; left: 0; right: 0;
-        background: rgba(255,255,255,0.98);
-        backdrop-filter: blur(12px);
-        flex-direction: column; gap: 0;
-        border-bottom: 1px solid #e5e7eb;
-        max-height: 0; overflow: hidden;
-        transition: max-height 0.3s ease;
+    <style>
+      /* ── Reset & Base ───────────────────────────────── */
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
       }
-      .nav-links.open { max-height: 300px; }
-      .nav-links li { border-top: 1px solid #f3f4f6; }
-      .nav-links a { display: block; padding: 16px 24px; font-size: 1rem; }
-      .nav-toggle { display: block; }
+      html {
+        scroll-behavior: smooth;
+        scroll-padding-top: 72px;
+      }
+      body {
+        font-family:
+          "Inter",
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          Roboto,
+          sans-serif;
+        color: #1a1a2e;
+        background: #fff;
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+      }
+      img {
+        max-width: 100%;
+        display: block;
+      }
+      a {
+        color: #2563eb;
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+      a:hover {
+        color: #1d4ed8;
+      }
 
-      .founder-card { flex-direction: column; gap: 32px; text-align: center; }
-      .founder-photo { width: 160px; height: 160px; margin: 0 auto; }
-      .founder-info p { max-width: 100%; }
-    }
-  </style>
-</head>
-<body>
+      /* ── Layout ─────────────────────────────────────── */
+      .container {
+        max-width: 1080px;
+        margin: 0 auto;
+        padding: 0 24px;
+      }
+      section {
+        padding: 96px 0;
+      }
 
-  <!-- Navigation -->
-  <nav class="nav" id="nav">
-    <div class="container">
-      <a href="#" class="nav-logo">Jadi<span>AB</span></a>
-      <ul class="nav-links" id="navLinks">
-        <li><a href="#services" onclick="closeMenu()">Services</a></li>
-        <li><a href="#about" onclick="closeMenu()">About</a></li>
-        <li><a href="#founder" onclick="closeMenu()">Team</a></li>
-        <li><a href="#contact" onclick="closeMenu()">Contact</a></li>
-      </ul>
-      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round">
-          <line x1="3" y1="6" x2="21" y2="6"/>
-          <line x1="3" y1="12" x2="21" y2="12"/>
-          <line x1="3" y1="18" x2="21" y2="18"/>
-        </svg>
-      </button>
-    </div>
-  </nav>
+      /* ── Navigation ─────────────────────────────────── */
+      .nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-bottom: 1px solid #e5e7eb;
+        transition: box-shadow 0.3s;
+      }
+      .nav.scrolled {
+        box-shadow: 0 1px 8px rgba(0, 0, 0, 0.06);
+      }
+      .nav .container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 64px;
+      }
+      .nav-logo {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: #1a1a2e;
+        letter-spacing: -0.02em;
+      }
+      .nav-logo span {
+        color: #2563eb;
+      }
+      .nav-links {
+        display: flex;
+        gap: 32px;
+        list-style: none;
+      }
+      .nav-links a {
+        font-size: 0.9rem;
+        font-weight: 500;
+        color: #4b5563;
+        transition: color 0.2s;
+      }
+      .nav-links a:hover {
+        color: #1a1a2e;
+      }
+      .nav-toggle {
+        display: none;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 4px;
+      }
+      .nav-toggle svg {
+        width: 24px;
+        height: 24px;
+        stroke: #1a1a2e;
+      }
 
-  <!-- Hero -->
-  <section class="hero" id="hero">
-    <div class="container">
-      <div class="hero-content fade-in">
-        <h1>Beautifully crafted solutions<br>to <em>difficult problems</em></h1>
-        <p>Jadi AB delivers full stack development, cloud architecture, and technical consulting for businesses that demand quality and reliability.</p>
-        <a href="#contact" class="hero-cta">Get in Touch
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-        </a>
+      /* ── Hero ───────────────────────────────────────── */
+      .hero {
+        padding: 160px 0 120px;
+        background: linear-gradient(
+          160deg,
+          #f8fafc 0%,
+          #eef2ff 50%,
+          #f8fafc 100%
+        );
+      }
+      .hero-content {
+        max-width: 680px;
+      }
+      .hero h1 {
+        font-size: clamp(2rem, 5vw, 3.25rem);
+        font-weight: 700;
+        line-height: 1.15;
+        letter-spacing: -0.03em;
+        color: #1a1a2e;
+        margin-bottom: 20px;
+      }
+      .hero h1 em {
+        font-style: normal;
+        background: linear-gradient(135deg, #2563eb, #7c3aed);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      .hero p {
+        font-size: 1.15rem;
+        color: #4b5563;
+        max-width: 520px;
+        margin-bottom: 32px;
+      }
+      .hero-cta {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 12px 28px;
+        background: #2563eb;
+        color: #fff;
+        font-weight: 600;
+        font-size: 0.95rem;
+        border-radius: 8px;
+        transition:
+          background 0.2s,
+          transform 0.15s;
+      }
+      .hero-cta:hover {
+        background: #1d4ed8;
+        color: #fff;
+        transform: translateY(-1px);
+      }
+
+      /* ── Services ───────────────────────────────────── */
+      .services {
+        background: #fff;
+      }
+      .section-label {
+        font-size: 0.8rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: #2563eb;
+        margin-bottom: 12px;
+      }
+      .section-title {
+        font-size: clamp(1.5rem, 3vw, 2.25rem);
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        margin-bottom: 16px;
+        color: #1a1a2e;
+      }
+      .section-subtitle {
+        color: #4b5563;
+        max-width: 560px;
+        margin-bottom: 56px;
+        font-size: 1.05rem;
+      }
+      .services-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+        gap: 24px;
+      }
+      .service-card {
+        padding: 32px 28px;
+        border: 1px solid #e5e7eb;
+        border-radius: 12px;
+        transition:
+          border-color 0.2s,
+          box-shadow 0.2s,
+          transform 0.2s;
+      }
+      .service-card:hover {
+        border-color: #c7d2fe;
+        box-shadow: 0 4px 24px rgba(37, 99, 235, 0.08);
+        transform: translateY(-2px);
+      }
+      .service-icon {
+        width: 44px;
+        height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #eef2ff;
+        border-radius: 10px;
+        margin-bottom: 20px;
+      }
+      .service-icon svg {
+        width: 22px;
+        height: 22px;
+        stroke: #2563eb;
+        fill: none;
+      }
+      .service-card h3 {
+        font-size: 1.05rem;
+        font-weight: 600;
+        margin-bottom: 10px;
+        color: #1a1a2e;
+      }
+      .service-card p {
+        font-size: 0.9rem;
+        color: #6b7280;
+        line-height: 1.55;
+      }
+
+      /* ── About ──────────────────────────────────────── */
+      .about {
+        background: #f8fafc;
+      }
+      .about-content {
+        max-width: 640px;
+      }
+      .about-content p {
+        color: #4b5563;
+        font-size: 1.05rem;
+        margin-bottom: 16px;
+      }
+
+      /* ── Founder ────────────────────────────────────── */
+      .founder {
+        background: #fff;
+      }
+      .founder-card {
+        display: flex;
+        gap: 48px;
+        align-items: center;
+      }
+      .founder-photo {
+        flex-shrink: 0;
+        width: 200px;
+        height: 200px;
+        border-radius: 16px;
+        overflow: hidden;
+        background: #e5e7eb;
+      }
+      .founder-photo svg {
+        width: 100%;
+        height: 100%;
+      }
+      .founder-info h3 {
+        font-size: 1.35rem;
+        font-weight: 700;
+        margin-bottom: 6px;
+        color: #1a1a2e;
+      }
+      .founder-info .founder-role {
+        font-size: 0.9rem;
+        color: #2563eb;
+        font-weight: 500;
+        margin-bottom: 16px;
+      }
+      .founder-info p {
+        color: #4b5563;
+        font-size: 0.95rem;
+        max-width: 480px;
+      }
+
+      /* ── Contact / Footer ──────────────────────────── */
+      .contact {
+        background: #1a1a2e;
+        color: #e5e7eb;
+        padding: 80px 0 48px;
+      }
+      .contact .section-label {
+        color: #818cf8;
+      }
+      .contact .section-title {
+        color: #fff;
+      }
+      .contact-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 40px;
+        margin-bottom: 56px;
+      }
+      .contact-item h4 {
+        font-size: 0.8rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: #94a3b8;
+        margin-bottom: 8px;
+      }
+      .contact-item a {
+        color: #c7d2fe;
+        font-size: 0.95rem;
+      }
+      .contact-item a:hover {
+        color: #fff;
+      }
+      .contact-item p {
+        color: #c7d2fe;
+        font-size: 0.95rem;
+      }
+      .footer-bar {
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        padding-top: 24px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+      .footer-bar p {
+        font-size: 0.82rem;
+        color: #64748b;
+      }
+
+      /* ── Animations ─────────────────────────────────── */
+      .fade-in {
+        opacity: 0;
+        transform: translateY(20px);
+        transition:
+          opacity 0.6s ease,
+          transform 0.6s ease;
+      }
+      .fade-in.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* ── Mobile ─────────────────────────────────────── */
+      @media (max-width: 768px) {
+        section {
+          padding: 72px 0;
+        }
+        .hero {
+          padding: 120px 0 80px;
+        }
+
+        .nav-links {
+          position: fixed;
+          top: 64px;
+          left: 0;
+          right: 0;
+          background: rgba(255, 255, 255, 0.98);
+          backdrop-filter: blur(12px);
+          flex-direction: column;
+          gap: 0;
+          border-bottom: 1px solid #e5e7eb;
+          max-height: 0;
+          overflow: hidden;
+          transition: max-height 0.3s ease;
+        }
+        .nav-links.open {
+          max-height: 300px;
+        }
+        .nav-links li {
+          border-top: 1px solid #f3f4f6;
+        }
+        .nav-links a {
+          display: block;
+          padding: 16px 24px;
+          font-size: 1rem;
+        }
+        .nav-toggle {
+          display: block;
+        }
+
+        .founder-card {
+          flex-direction: column;
+          gap: 32px;
+          text-align: center;
+        }
+        .founder-photo {
+          width: 160px;
+          height: 160px;
+          margin: 0 auto;
+        }
+        .founder-info p {
+          max-width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="nav" id="nav">
+      <div class="container">
+        <a href="#" class="nav-logo">Jadi<span>AB</span></a>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="#services" onclick="closeMenu()">Services</a></li>
+          <li><a href="#about" onclick="closeMenu()">About</a></li>
+          <li><a href="#founder" onclick="closeMenu()">Team</a></li>
+          <li><a href="#contact" onclick="closeMenu()">Contact</a></li>
+        </ul>
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke-width="2"
+            stroke-linecap="round"
+          >
+            <line x1="3" y1="6" x2="21" y2="6" />
+            <line x1="3" y1="12" x2="21" y2="12" />
+            <line x1="3" y1="18" x2="21" y2="18" />
+          </svg>
+        </button>
       </div>
-    </div>
-  </section>
+    </nav>
 
-  <!-- Services -->
-  <section class="services" id="services">
-    <div class="container">
-      <p class="section-label fade-in">What We Do</p>
-      <h2 class="section-title fade-in">Services</h2>
-      <p class="section-subtitle fade-in">End-to-end expertise across the modern technology stack, from front-end interfaces to cloud infrastructure.</p>
-      <div class="services-grid">
-        <div class="service-card fade-in">
-          <div class="service-icon">
-            <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-          </div>
-          <h3>Full Stack Development</h3>
-          <p>Complete web application development from responsive front-ends to robust back-end systems, built with modern frameworks and best practices.</p>
-        </div>
-        <div class="service-card fade-in">
-          <div class="service-icon">
-            <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>
-          </div>
-          <h3>Cloud & DevOps</h3>
-          <p>Cloud architecture, CI/CD pipelines, containerisation, and infrastructure-as-code to keep your systems scalable, secure, and easy to manage.</p>
-        </div>
-        <div class="service-card fade-in">
-          <div class="service-icon">
-            <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>
-          </div>
-          <h3>API Design & Integration</h3>
-          <p>Well-structured RESTful and GraphQL APIs, third-party integrations, and microservice architectures that connect your systems seamlessly.</p>
-        </div>
-        <div class="service-card fade-in">
-          <div class="service-icon">
-            <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
-          </div>
-          <h3>Technical Consulting</h3>
-          <p>Architecture reviews, technology evaluation, and strategic guidance to help you make the right technical decisions for your business.</p>
+    <!-- Hero -->
+    <section class="hero" id="hero">
+      <div class="container">
+        <div class="hero-content fade-in">
+          <h1>
+            Beautifully crafted solutions<br />to <em>difficult problems</em>
+          </h1>
+          <p>
+            Jadi AB delivers full stack development, cloud architecture, and
+            technical consulting for businesses that demand quality and
+            reliability.
+          </p>
+          <a href="#contact" class="hero-cta"
+            >Get in Touch
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <line x1="5" y1="12" x2="19" y2="12" />
+              <polyline points="12 5 19 12 12 19" />
+            </svg>
+          </a>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- About -->
-  <section class="about" id="about">
-    <div class="container">
-      <p class="section-label fade-in">Who We Are</p>
-      <h2 class="section-title fade-in">About Jadi AB</h2>
-      <div class="about-content fade-in">
-        <p>Jadi AB is a Stockholm-based software consultancy focused on delivering high-quality, full stack solutions. We work closely with our clients to understand their challenges and build software that is reliable, maintainable, and designed to last.</p>
-        <p>Whether you need a new application built from scratch, an existing system modernised, or expert guidance on your technology strategy, we bring the expertise and attention to detail that complex projects demand.</p>
+    <!-- Services -->
+    <section class="services" id="services">
+      <div class="container">
+        <p class="section-label fade-in">What We Do</p>
+        <h2 class="section-title fade-in">Services</h2>
+        <p class="section-subtitle fade-in">
+          End-to-end expertise across the modern technology stack, from
+          front-end interfaces to cloud infrastructure.
+        </p>
+        <div class="services-grid">
+          <div class="service-card fade-in">
+            <div class="service-icon">
+              <svg
+                viewBox="0 0 24 24"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <rect x="2" y="3" width="20" height="14" rx="2" />
+                <line x1="8" y1="21" x2="16" y2="21" />
+                <line x1="12" y1="17" x2="12" y2="21" />
+              </svg>
+            </div>
+            <h3>Full Stack Development</h3>
+            <p>
+              Complete web application development from responsive front-ends to
+              robust back-end systems, built with modern frameworks and best
+              practices.
+            </p>
+          </div>
+          <div class="service-card fade-in">
+            <div class="service-icon">
+              <svg
+                viewBox="0 0 24 24"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z" />
+              </svg>
+            </div>
+            <h3>Cloud & DevOps</h3>
+            <p>
+              Cloud architecture, CI/CD pipelines, containerisation, and
+              infrastructure-as-code to keep your systems scalable, secure, and
+              easy to manage.
+            </p>
+          </div>
+          <div class="service-card fade-in">
+            <div class="service-icon">
+              <svg
+                viewBox="0 0 24 24"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"
+                />
+                <line x1="4" y1="22" x2="4" y2="15" />
+              </svg>
+            </div>
+            <h3>API Design & Integration</h3>
+            <p>
+              Well-structured RESTful and GraphQL APIs, third-party
+              integrations, and microservice architectures that connect your
+              systems seamlessly.
+            </p>
+          </div>
+          <div class="service-card fade-in">
+            <div class="service-icon">
+              <svg
+                viewBox="0 0 24 24"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <circle cx="12" cy="12" r="10" />
+                <line x1="12" y1="16" x2="12" y2="12" />
+                <line x1="12" y1="8" x2="12.01" y2="8" />
+              </svg>
+            </div>
+            <h3>Technical Consulting</h3>
+            <p>
+              Architecture reviews, technology evaluation, and strategic
+              guidance to help you make the right technical decisions for your
+              business.
+            </p>
+          </div>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Founder -->
-  <section class="founder" id="founder">
-    <div class="container">
-      <p class="section-label fade-in">The Team</p>
-      <h2 class="section-title fade-in">Meet the Founder</h2>
-      <div class="founder-card fade-in">
-        <div class="founder-photo">
-          <!-- Placeholder: replace this SVG with an <img src="photo.jpg" alt="Dag Jidell"> -->
-          <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+    <!-- About -->
+    <section class="about" id="about">
+      <div class="container">
+        <p class="section-label fade-in">Who We Are</p>
+        <h2 class="section-title fade-in">About Jadi AB</h2>
+        <div class="about-content fade-in">
+          <p>
+            Jadi AB is a Stockholm-based software consultancy focused on
+            delivering high-quality, full stack solutions. We work closely with
+            our clients to understand their challenges and build software that
+            is reliable, maintainable, and designed to last.
+          </p>
+          <p>
+            Whether you need a new application built from scratch, an existing
+            system modernised, or expert guidance on your technology strategy,
+            we bring the expertise and attention to detail that complex projects
+            demand.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Founder -->
+    <section class="founder" id="founder">
+      <div class="container">
+        <p class="section-label fade-in">The Team</p>
+        <h2 class="section-title fade-in">Meet the Founder</h2>
+        <div class="founder-card fade-in">
+          <div class="founder-photo">
+            <!-- Placeholder: replace this SVG with an <img src="photo.jpg" alt="Dag Jidell"> -->
+            <img src="photo.jpg" alt="Dag Jidell" />
+            <!-- <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
             <rect width="200" height="200" fill="#e5e7eb"/>
             <circle cx="100" cy="76" r="32" fill="#d1d5db"/>
             <ellipse cx="100" cy="160" rx="52" ry="40" fill="#d1d5db"/>
-          </svg>
-        </div>
-        <div class="founder-info">
-          <h3>Dag Jidell</h3>
-          <p class="founder-role">Founder & Full Stack Developer</p>
-          <p>Dag is a seasoned software engineer with deep experience across the full technology stack. With a passion for clean code and well-architected systems, he founded Jadi AB to help businesses tackle their most challenging technical problems with precision and care.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact & Footer -->
-  <section class="contact" id="contact">
-    <div class="container">
-      <p class="section-label fade-in">Get in Touch</p>
-      <h2 class="section-title fade-in">Let's Work Together</h2>
-      <div class="contact-grid fade-in">
-        <div class="contact-item">
-          <h4>Email</h4>
-          <a href="mailto:dag@jidell.se">dag@jidell.se</a>
-        </div>
-        <div class="contact-item">
-          <h4>LinkedIn</h4>
-          <a href="https://www.linkedin.com/in/dag-jidell" target="_blank" rel="noopener noreferrer">linkedin.com/in/dag-jidell</a>
-        </div>
-        <div class="contact-item">
-          <h4>Location</h4>
-          <p>Stockholm, Sweden</p>
+          </svg> -->
+          </div>
+          <div class="founder-info">
+            <h3>Dag Jidell</h3>
+            <p class="founder-role">Founder & Full Stack Developer</p>
+            <p>
+              Dag is a seasoned software engineer with a passion for clean code
+              and well-architected systems, with an insane amount of experience across the stack
+              and from multiple industries, either as a one-man-project or part of a larger team. 
+            </p>
+          </div>
         </div>
       </div>
-      <div class="footer-bar">
-        <p>&copy; 2026 Jadi AB. All rights reserved.</p>
-        <p>Org.nr: xxxxxx-xxxx</p>
+    </section>
+
+    <!-- Contact & Footer -->
+    <section class="contact" id="contact">
+      <div class="container">
+        <p class="section-label fade-in">Get in Touch</p>
+        <h2 class="section-title fade-in">Let's Work Together</h2>
+        <div class="contact-grid fade-in">
+          <div class="contact-item">
+            <h4>Email</h4>
+            <a href="mailto:dag@jidell.se">dag@jidell.se</a>
+          </div>
+          <div class="contact-item">
+            <h4>LinkedIn</h4>
+            <a
+              href="https://www.linkedin.com/in/dag-jidell"
+              target="_blank"
+              rel="noopener noreferrer"
+              >linkedin.com/in/dag-jidell</a
+            >
+          </div>
+          <div class="contact-item">
+            <h4>Location</h4>
+            <p>Stockholm, Sweden</p>
+          </div>
+        </div>
+        <div class="footer-bar">
+          <p>&copy; 2026 Jadi AB. All rights reserved.</p>
+          <p>Org.nr: xxxxxx-xxxx</p>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <script>
-    // Nav toggle (mobile)
-    const navToggle = document.getElementById('navToggle');
-    const navLinks = document.getElementById('navLinks');
-    navToggle.addEventListener('click', () => navLinks.classList.toggle('open'));
-    function closeMenu() { navLinks.classList.remove('open'); }
+    <script>
+      // Nav toggle (mobile)
+      const navToggle = document.getElementById("navToggle");
+      const navLinks = document.getElementById("navLinks");
+      navToggle.addEventListener("click", () =>
+        navLinks.classList.toggle("open"),
+      );
+      function closeMenu() {
+        navLinks.classList.remove("open");
+      }
 
-    // Nav shadow on scroll
-    const nav = document.getElementById('nav');
-    window.addEventListener('scroll', () => {
-      nav.classList.toggle('scrolled', window.scrollY > 10);
-    }, { passive: true });
+      // Nav shadow on scroll
+      const nav = document.getElementById("nav");
+      window.addEventListener(
+        "scroll",
+        () => {
+          nav.classList.toggle("scrolled", window.scrollY > 10);
+        },
+        { passive: true },
+      );
 
-    // Fade-in on scroll
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.classList.add('visible');
-          observer.unobserve(e.target);
-        }
-      });
-    }, { threshold: 0.15 });
-    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-  </script>
-
-</body>
+      // Fade-in on scroll
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              e.target.classList.add("visible");
+              observer.unobserve(e.target);
+            }
+          });
+        },
+        { threshold: 0.15 },
+      );
+      document
+        .querySelectorAll(".fade-in")
+        .forEach((el) => observer.observe(el));
+    </script>
+  </body>
 </html>
